@@ -12,7 +12,7 @@ pipeline {
 
                 steps{
                 dir("/var/lib/jenkins/workspace/BackendMingeso/backend/"){
-                         sh 'gradle bootrun'
+                         sh './gradlew bootrun'
                            
                  }
                 }
