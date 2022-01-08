@@ -8,7 +8,6 @@ public class Producto{
     private Date fechaVencimiento;
     private Integer categoriaProducto;
     private Integer precioProducto;
-    private Boolean deleted;
 
     //******GETTERS*******//
     public Long getId(){
@@ -29,9 +28,6 @@ public class Producto{
     public Integer getPrecioProducto(){
         return precioProducto;
     }
-    public Boolean getDeleted(){
-        return deleted;
-    }
 
     //*****SETTERS******//
     public void setId(Long id){
@@ -51,8 +47,5 @@ public class Producto{
     }
     public void setPrecioProducto(Integer precioproducto){
         this.precioProducto = precioproducto;
-    }
-    public void setDeleted(Boolean deleted){
-        this.deleted = deleted;
     }
 }

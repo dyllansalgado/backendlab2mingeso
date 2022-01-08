@@ -31,13 +31,12 @@ public class ProductoRepositoryImp implements ProductoRepository{
     @Override
     public Producto addProducto(Producto producto) {
         try(Connection conn = sql2o.open()){
-            Long insertedId = (Long) conn.createQuery("INSERT INTO producto (codigoProducto,nombreProducto,fechaVencimiento,categoriaProducto,precioProducto,deleted) values (:codigoProducto,:nombreProducto,:fechaVencimiento,:categoriaProducto,:precioProducto,:deleted)", true)
+            Long insertedId = (Long) conn.createQuery("INSERT INTO producto (codigoProducto,nombreProducto,fechaVencimiento,categoriaProducto,precioProducto) values (:codigoProducto,:nombreProducto,:fechaVencimiento,:categoriaProducto,:precioProducto)", true)
                     .addParameter("codigoProducto", producto.getCodigoProducto())
                     .addParameter("nombreProducto",producto.getNombreProducto())
                     .addParameter("fechaVencimiento", producto.getFechaVencimiento())
                     .addParameter("categoriaProducto", producto.getCategoriaProducto())
                     .addParameter("precioProducto", producto.getPrecioProducto())
-                    .addParameter("deleted", producto.getDeleted())
                     .executeUpdate().getKey();
             producto.setId(insertedId);
             return producto;        

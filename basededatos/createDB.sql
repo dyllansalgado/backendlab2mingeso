@@ -6,7 +6,6 @@ CREATE TABLE Producto(
  fechaVencimiento DATE NOT NULL,
  categoriaProducto integer NOT NULL,
  precioProducto integer NOT NULL, 
- deleted boolean NOT NULL,
  CONSTRAINT id PRIMARY KEY (id)
 );
 
