@@ -8,4 +8,5 @@ public interface ProductoRepository{
     public void deleteAllProducto();
     public void deleteProductoById(Long id);
     public Producto getProductoById(Long id);
+    public Long contadorProducto();
 }

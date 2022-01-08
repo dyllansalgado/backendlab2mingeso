@@ -17,28 +17,30 @@ public class ProductoService {
     ProductoService(ProductoRepository productoRepository){
         this.productoRepository = productoRepository;
     }
-//Obtener todos los productos
-    @GetMapping("/productos/")
+    //Obtener todos los productos lista
+    @GetMapping("/producto/")
     public List<Producto> getAllProducto(){
         return productoRepository.getAllProducto();
     }
-//Agregar un producto
-    @PostMapping("/productos/")
+    //Agregar un producto
+    @PostMapping("/producto/")
+    @ResponseBody
     public Producto addProducto(@RequestBody Producto producto){
-        return productoRepository.addProducto(producto);
+        Producto result = productoRepository.addProducto(producto);
+        return result;
     }
-//Borrar todos los productos
+    //Borrar todos los productos
     @DeleteMapping("/producto/")
     public String deleteAllProducto(){
         productoRepository.deleteAllProducto();
         return "Se han eliminado todos los productos";
     }
-//Obtener producto por id
+    //Obtener producto por id lista
     @GetMapping("/producto/{id}")
     public Producto getProducto(@PathVariable Long id){
         return productoRepository.getProductoById(id);
     }
-//Borrar un producto con id especifica
+    //Borrar un producto con id especifica
     @DeleteMapping("/producto/{id}")
     public String deleteProducto(@PathVariable Long id){
         productoRepository.deleteProductoById(id);

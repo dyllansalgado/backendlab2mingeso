@@ -10,14 +10,14 @@ public class DatabaseContext {
     @Value("${database.url}")
     private String dbUrl;
 
-    @Value("${database.user}")
+    @Value("${database.username}")
     private String dbUser;
 
     @Value("${database.password}")
     private String dbPass;
-
+    
     @Bean
     public Sql2o sql2o(){
-        return new Sql2o(dbUrl,dbUser,dbPass);
+        return new Sql2o(dbUrl, dbUser, dbPass);
     }
 }

@@ -15,31 +15,41 @@ public class ProductoRepositoryImp implements ProductoRepository{
     private Sql2o sql2o;
 
     @Override
+    public Long contadorProducto(){
+        String query = "select count(*) from producto";
+        Connection conn = sql2o.open();
+        Long resultado = (Long) conn.createQuery(query,true).executeAndFetchFirst(Long.class);
+        return resultado + 1; 
+    }
+    @Override
     public List<Producto> getAllProducto(){
-        String sql = "Select * from \"Producto\";";
+        String sql = "Select * from Producto";
         try(Connection conn = sql2o.open()){
             return conn.createQuery(sql).executeAndFetch(Producto.class);
         }
     }
-
     @Override
-    public Producto addProducto(Producto producto){
-        String sql = "insert into \"Producto\"(codigoProducto,nombreProducto,fechaVencimiento,categoriaProducto,precioProducto) values (:codigo,:nombre,:fecha_vencimiento,:categoria,:precio);";
-        try (Connection con = sql2o.open()) {
-            Long id = (Long) con.createQuery(sql)
+    public Producto addProducto(Producto producto) {
+        try(Connection conn = sql2o.open()){
+            Long insertedId = (Long) conn.createQuery("INSERT INTO producto (codigoProducto,nombreProducto,fechaVencimiento,categoriaProducto,precioProducto,deleted) values (:codigoProducto,:nombreProducto,:fechaVencimiento,:categoriaProducto,:precioProducto,:deleted)", true)
                     .addParameter("codigoProducto", producto.getCodigoProducto())
                     .addParameter("nombreProducto",producto.getNombreProducto())
                     .addParameter("fechaVencimiento", producto.getFechaVencimiento())
                     .addParameter("categoriaProducto", producto.getCategoriaProducto())
                     .addParameter("precioProducto", producto.getPrecioProducto())
+                    .addParameter("deleted", producto.getDeleted())
                     .executeUpdate().getKey();
-            producto.setId(id);
-            return producto;
+            producto.setId(insertedId);
+            return producto;        
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return null;
         }
+        
     }
     @Override
     public void deleteAllProducto(){
-        String sql = "delete from \"Producto\";";
+        String sql = "delete from Producto";
         try (Connection con = sql2o.open()){
             con.createQuery(sql).executeUpdate();
         }
@@ -47,13 +57,13 @@ public class ProductoRepositoryImp implements ProductoRepository{
 
     @Override
     public Producto getProductoById(Long id){
-        String sql = "select * from \"Producto\" where id_producto= :id;";
+        String sql = "select * from Producto where id= :id;";
         try (Connection con = sql2o.open()) {
             return con.createQuery(sql).addParameter("id",id).executeAndFetchFirst(Producto.class);
         }
     }
     public void deleteProductoById(Long id){
-        String sql = "delete from \"Producto\" where id_producto = :id;";
+        String sql = "delete from Producto where id = :id;";
         try (Connection con = sql2o.open()) {
             con.createQuery(sql).addParameter("id",id).executeUpdate();
         }
