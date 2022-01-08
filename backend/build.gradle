@@ -16,7 +16,10 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-web-services'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation group: 'org.sql2o', name: 'sql2o', version: '1.6.0'
+	implementation 'org.postgresql:postgresql:42.2.5'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+	exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'}
 }
 
 test {
