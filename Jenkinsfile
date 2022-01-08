@@ -11,14 +11,14 @@ pipeline {
         stage('Contruir imagen docker'){
 
                 steps{
-                dir("/var/lib/jenkins/workspace/BackendMingeso/"){
+                dir("/var/lib/jenkins/workspace/BackendMingeso/backend/"){
                          sh 'docker build -t backend .'
                  }
                 }
         }
     stage('Correr imagen'){
                 steps{
-                dir("/var/lib/jenkins/workspace/BackendMingeso/"){
+                dir("/var/lib/jenkins/workspace/BackendMingeso/backend/"){
                 sh 'docker run --rm --name backend -d -p 8000:8000  --network host backend:latest'
                  }
                 }
