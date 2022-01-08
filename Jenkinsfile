@@ -8,18 +8,6 @@ pipeline {
         }
 
 
-
-    stage('Parar imagen anterior'){
-
-                steps{
-
-            dir("/var/lib/jenkins/workspace/BackendMingeso/Private-Services"){
-                sh 'docker stop backend  true && docker rm backend  true'
-            }
-
-
-                }
-        }
         stage('Contruir imagen docker'){
 
                 steps{
