@@ -32,6 +32,7 @@ pipeline {
 				}
 				catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     dir("/var/lib/jenkins/workspace/T2-BackEnd/backend") {
+                        sh 'chmod +x ./gradlew'
                         sh './gradlew test'
 					}
                 }
