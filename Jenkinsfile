@@ -8,15 +8,13 @@ pipeline {
         }
         
  
-        stage('SonarQube Scanner') {
-             steps{
-                    script {
-                        def scannerHome = tool 'SonarQube Scanner';
-                    }
-                withSonarQubeEnv('trabajo2-back') { // If you have configured more than one global server connection, you can specify its name
-                    sh "${scannerHome}/bin/sonar-scanner"
+        stage('SonarQube Gradle') {
+            steps{    
+                withSonarQubeEnv('trabajo2-back') { // Will pick the global server connection you have configured
+                sh './gradlew sonarqube'
                 }
-             }//a
-        }
+            }
+        }//a
+        
     }
 }
