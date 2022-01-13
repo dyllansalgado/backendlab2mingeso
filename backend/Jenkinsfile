@@ -9,11 +9,14 @@ pipeline {
         
  
         stage('SonarQube Gradle') {
-            steps{    
-                withSonarQubeEnv('trabajo2-back') { // Will pick the global server connection you have configured
-                sh './gradlew sonarqube'
-                }
-            }
+            steps {
+				dir("/var/lib/jenkins/workspace/T2-BackEnd/backend") {
+					withSonarQubeEnv('trabajo2-back') { // Will pick the global server connection you have configured
+						sh 'chmod +x ./gradlew'
+						sh './gradlew sonarqube'
+    					}
+				}
+			}
         }//a
         
     }
