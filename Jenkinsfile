@@ -14,17 +14,14 @@ pipeline {
                 dir("/var/lib/jenkins/workspace/T2-BackEnd/backend") {
                     withSonarQubeEnv('trabajo2-back') {
 						sh 'chmod +x ./gradlew'
-						sh './gradlew sonarqube \
-  							-Dsonar.projectKey=t2-backend \
-                            -Dsonar.host.url=http://ec2-3-70-187-29.eu-central-1.compute.amazonaws.com:9000 \
-                            -Dsonar.login=c975fd6a194140334018e0606be4546a0bff9926'
+						sh './gradlew sonarqube'
     				}
 				}
 			}
         }
 
         // JUnit Listo.
-        stage('JUnit'){
+        /* stage('JUnit'){
 			steps {
 				dir("/var/lib/jenkins/workspace/T2-BackEnd/backend/build/test-results/test") {
 					sh 'touch prueba.xml'
@@ -40,7 +37,7 @@ pipeline {
 					junit '*.xml'
 				}
 			}
-		}
+		} */
 
         //
     }
