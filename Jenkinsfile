@@ -10,11 +10,12 @@ pipeline {
  
         stage('SonarQube analysis') {
              steps{
-                    
+                    script {
+                        scannerHome = tool 'SonarScanner 4.6';
+                    }
                 withSonarQubeEnv('trabajo2-back') { // If you have configured more than one global server connection, you can specify its name
-                    sh './gradlew sonarqube'
+                    sh "${scannerHome}/bin/sonar-scanner"
                 }
-             }
 
         }
     }
