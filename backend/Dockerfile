@@ -1,13 +1,21 @@
-FROM openjdk:17.0.1-oracle
+# pull official base image
+FROM node:13.12.0-alpine
 
-RUN chmod +x ./gradlew
+# set working directory
+WORKDIR /app
 
-RUN ./gradlew build -x test
+# add `/app/node_modules/.bin` to $PATH
+ENV PATH /app/node_modules/.bin:$PATH
 
-COPY docker-entrypoint.sh /
+# install app dependencies
+COPY package.json ./
+COPY package-lock.json ./
+RUN npm install --silent
 
-RUN chmod +x docker-entrypoint.sh
+# add app
+COPY . ./
 
-ENTRYPOINT ["bash","docker-entrypoint.sh"]
+RUN npm run build
 
-EXPOSE 3000
+# start app
+CMD ["serve","-s", "build"]
