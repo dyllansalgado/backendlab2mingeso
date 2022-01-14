@@ -1,13 +1,6 @@
-FROM openjdk:17.0.1-oracle
-
-RUN chmod +x ./gradlew
-
-RUN ./gradlew build -x test
-
-COPY docker-entrypoint.sh /
-
-RUN chmod +x docker-entrypoint.sh
-
-ENTRYPOINT ["bash","docker-entrypoint.sh"]
-
-EXPOSE 3000
+FROM openjdk:11-oracle
+VOLUME /tmp
+EXPOSE 8000
+ARG JAR_FILE=backend-0.0.1-SNAPSHOT.jar
+ADD ${JAR_FILE} app.jar
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
