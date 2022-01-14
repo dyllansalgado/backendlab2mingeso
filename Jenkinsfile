@@ -43,7 +43,7 @@ pipeline {
 
         stage('Parar la imagen anterior'){
             steps{
-                dir("/var/lib/jenkins/Dir"){
+                dir("/var/lib/jenkins/workspace/T2-BackEnd/backend"){
 				    sh 'docker stop backend || true && docker rm backend || true'	
 			    }
             }             
@@ -51,14 +51,14 @@ pipeline {
 
         stage('Contruir imagen docker'){
             steps{
-        		dir("/var/lib/jenkins/Dir"){
-                 	sh 'docker build backend -t backend'	
+        		dir("/var/lib/jenkins/workspace/T2-BackEnd/backend"){
+                 	sh 'docker build . -t backend'	
 	         	}
             }             
         }
 	    stage('Correr imagen'){
             steps{
-        		dir("/var/lib/jenkins/Dir"){
+        		dir("/var/lib/jenkins/workspace/T2-BackEnd/backend"){
 				    sh 'docker run --rm --name backend -d -p 8000:8000 backend'
 	         	}
             }             
