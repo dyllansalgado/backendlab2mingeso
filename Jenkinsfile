@@ -52,7 +52,7 @@ pipeline {
         stage('Contruir imagen docker'){
             steps{
         		dir("/var/lib/jenkins/Dir"){
-                 	sh 'docker backend build -t backend .'	
+                 	sh 'docker build backend . -t backend'	
 	         	}
             }             
         }
