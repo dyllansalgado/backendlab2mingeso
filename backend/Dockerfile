@@ -1,21 +1,11 @@
-# pull official base image
-FROM node:13.12.0-alpine
+FROM openjdk:15.0.1-oracle
 
-# set working directory
-WORKDIR /app
+COPY /build/libs/demo-0.0.1-SNAPSHOT.jar demo-0.0.1-SNAPSHOT.jar
 
-# add `/app/node_modules/.bin` to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
+COPY docker-entrypoint.sh /
 
-# install app dependencies
-COPY package.json ./
-COPY package-lock.json ./
-RUN npm install --silent
+RUN chmod +x docker-entrypoint.sh
 
-# add app
-COPY . ./
+ENTRYPOINT ["bash", "docker-entrypoint.sh"]
 
-RUN npm run build
-
-# start app
-CMD ["serve","-s", "build"]
+EXPOSE 1818
