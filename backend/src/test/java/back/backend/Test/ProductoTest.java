@@ -30,7 +30,7 @@ public class ProductoTest {
 
     @Test
     public void testNombreProducto() {
-        producto.setNombreProducto("nombre_4");
+        producto.setNombreProducto("producto_4");
         Assertions.assertEquals(nombreProducto, producto.getNombreProducto(), "Listo");
     }
 
