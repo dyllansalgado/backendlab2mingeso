@@ -70,7 +70,8 @@ pipeline {
 	    stage('Correr imagen'){
             steps{
         		dir("/var/lib/jenkins/workspace/T2-BackEnd/backend"){
-				    sh 'docker run --rm --name backend -d -p 8000:8000 backend'
+				
+				sh 'docker run -it --rm -p 8000:8000 backend'
 	         	}
             }             
         }
