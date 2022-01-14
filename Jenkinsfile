@@ -44,6 +44,7 @@ pipeline {
         stage('Parar la imagen anterior'){
             steps{
                 dir("/var/lib/jenkins/workspace/T2-BackEnd/backend"){
+                    sh 'sudo chmod 666 /var/run/docker.sock'
 				    sh 'docker stop backend || true && docker rm backend || true'	
 			    }
             }             
