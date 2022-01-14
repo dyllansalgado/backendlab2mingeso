@@ -47,4 +47,25 @@ public class ProductoSelenium {
         }
     }
 
+    // Prueba para derigirse a la página de los productos y visualizar todos los
+    // productos
+    @Test
+    @Order(1)
+    public void initWeb() {
+        // Se dirige a la página de Log In
+        driver.get("http://localhost:3000/home");
+        // Se busca el boton de inicio
+        WebElement iniciar = driver.findElement(By.linkTest("Ir a productos"));
+        iniciar.click();
+    }
+
+    @Test
+    @Order(2)
+    public void deleteProducto() {
+        // Se busca un elemento a eliminar
+        driver.get("http://localhost:3000/productos");
+        // Se selecciona el elemento
+
+    }
+
 }
