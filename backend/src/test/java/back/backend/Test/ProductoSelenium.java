@@ -55,7 +55,7 @@ public class ProductoSelenium {
         // Se dirige a la página de Log In
         driver.get("http://localhost:3000/home");
         // Se busca el boton de inicio
-        WebElement iniciar = driver.findElement(By.linkTest("Ir a productos"));
+        WebElement iniciar = driver.findElement(By.linkText("Ir a productos"));
         iniciar.click();
     }
 
@@ -64,7 +64,11 @@ public class ProductoSelenium {
     public void deleteProducto() {
         // Se busca un elemento a eliminar
         driver.get("http://localhost:3000/productos");
-        // Se selecciona el elemento
+        // Se elimina el producto con el nombre_!
+        WebElement delete = driver.findElement(By.linkText("Nombre Producto: nombre_1"));
+        // Luego que encuentra el elemento lo elimina en la misma tarde
+        WebElement deletes = delete.findElement(By.linkText("Eliminar"));
+        deletes.click();
 
     }
 
