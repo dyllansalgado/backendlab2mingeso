@@ -59,6 +59,14 @@ pipeline {
 	         	}
             }             
         }
+
+        stage('Login') {
+
+			steps {
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+			}
+		}
+        
 	    stage('Correr imagen'){
             steps{
         		dir("/var/lib/jenkins/workspace/T2-BackEnd/backend"){
