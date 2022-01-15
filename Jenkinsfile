@@ -59,29 +59,20 @@ pipeline {
 	         	}
             }             
         }
-
-        stage('Login') {
-
-			steps {
-				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-			}
-		}
-        
-	    stage('Correr imagen'){
-            steps{
+	stage('Correr imagen'){
+                steps{
         		dir("/var/lib/jenkins/workspace/backend/backend"){
-				
 				sh 'docker run --rm --name backend -d -p 8000:8000 backend'
 	         	}
-            }             
+                }             
         }
-        
-	    stage('Subir imagen docker a hub'){
+	stage('Subir imagen docker a hub'){
                 steps{
 			        sh 'docker tag backend miige/backend:latest'	
 			        sh 'docker push miige/backend:latest'
                 }             
-        } 
+        }
+        
     }
 
 }
