@@ -1,8 +1,8 @@
 pipeline {
     agent any
-    environment {
+    /* environment {
 		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
-	}
+	} */
     stages {
         
         stage('Inicio'){
@@ -44,7 +44,7 @@ pipeline {
 
         //Docker
 
-        stage('Parar la imagen anterior'){
+        /* stage('Parar la imagen anterior'){
             steps{
                 dir("/var/lib/jenkins/workspace/T2-BackEnd/backend"){
 				    sh 'docker stop backend || true && docker rm backend || true'	
@@ -75,12 +75,13 @@ pipeline {
 	         	}
             }             
         }
+        
 	    stage('Subir imagen docker a hub'){
                 steps{
 			        sh 'docker tag backend miige/backend:latest'	
 			        sh 'docker push miige/backend:latest'
                 }             
-        }
+        } */
     }
 
 }
