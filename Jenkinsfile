@@ -12,7 +12,7 @@ pipeline {
         }
  
         /// SonarQube Listo.
-        stage('SonarQube Gradle') {
+        /*stage('SonarQube Gradle') {
             steps {
                 dir("/var/lib/jenkins/workspace/backend/backend") {
                     withSonarQubeEnv('trabajo2-back') {
@@ -21,7 +21,7 @@ pipeline {
     				}
 				}
 			}
-        }
+        }*/
 
         // JUnit Listo.
         /* stage('JUnit'){
@@ -44,7 +44,7 @@ pipeline {
 
         //Docker
 
-        /* stage('Parar la imagen anterior'){
+        stage('Parar la imagen anterior'){
             steps{
                 dir("/var/lib/jenkins/workspace/backend/backend"){
 				    sh 'docker stop backend || true && docker rm backend || true'	
@@ -81,7 +81,7 @@ pipeline {
 			        sh 'docker tag backend miige/backend:latest'	
 			        sh 'docker push miige/backend:latest'
                 }             
-        } */
+        } 
     }
 
 }
