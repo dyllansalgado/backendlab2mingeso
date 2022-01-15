@@ -10,8 +10,8 @@ pipeline {
                 echo "Iniciando"
             } 
         }
-
-        // SonarQube Listo.
+ 
+        /// SonarQube Listo.
         /*stage('SonarQube Gradle') {
             steps {
                 dir("/var/lib/jenkins/workspace/T2-BackEnd/backend") {
