@@ -1,12 +1,10 @@
 DROP DATABASE db_tingeso;
 
 -- Creación de la base de datos.
-CREATE DATABASE db_tingeso 
-    WITH 
-    OWNER = postgres;
+CREATE DATABASE db_tingeso;
 
 -- Conexión de la Base de datos.
-\connect db_tingeso;
+--\connect db_tingeso;
 
 DROP TABLE IF EXISTS Producto CASCADE;
 
