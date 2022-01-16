@@ -50,7 +50,7 @@ pipeline {
 				    sh 'docker stop backend || true && docker rm backend || true'	
 			    }
                 dir("/var/lib/jenkins/workspace/backend/basededatos"){
-                    sh 'docker stop postgresT2 || true && docker rm postgresT2 || true'
+                    sh 'docker stop postgrest2 || true && docker rm postgrest2 || true'
                 }
             }             
         }
@@ -58,7 +58,7 @@ pipeline {
         stage('Contruir imagen docker'){
             steps{
                 dir("/var/lib/jenkins/workspace/backend/basededatos"){
-                    sh 'docker build . -t postgresT2'
+                    sh 'docker build . -t postgrest2'
                 }
         		dir("/var/lib/jenkins/workspace/backend/backend"){
                  	sh 'docker build . -t backend'
@@ -69,7 +69,7 @@ pipeline {
 	stage('Correr imagen'){
                 steps{
         		    dir("/var/lib/jenkins/workspace/backend/backend"){
-                        sh 'docker run --rm --name postgresT2 -d -p 5432:5432 postgresT2'
+                        sh 'docker run --rm --name postgrest2 -d -p 5432:5432 postgrest2'
 				        sh 'docker run --rm --name backend -d -p 8000:8000 backend'
 	         	}
             }             
