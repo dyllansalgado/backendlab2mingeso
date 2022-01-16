@@ -69,7 +69,7 @@ pipeline {
 	stage('Correr imagen'){
                 steps{
         		    dir("/var/lib/jenkins/workspace/backend/backend"){
-                        sh 'docker run --rm --name postgrest2 -d -p 5432:5432 postgrest2'
+                        sh 'docker run --rm --name postgrest2 -d -p 5555:5432 postgrest2'
 				        sh 'docker run --rm --name backend -d -p 8000:8000 backend'
 	         	}
             }             
