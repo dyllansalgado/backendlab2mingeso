@@ -3,11 +3,7 @@ DROP DATABASE db_tingeso;
 -- Creación de la base de datos.
 CREATE DATABASE db_tingeso 
     WITH 
-    OWNER = postgres
-    ENCODING = 'UTF8'
-    TEMPLATE = template0
-    LC_COLLATE = 'es_CL.UTF-8' 
-    LC_CTYPE = 'es_CL.UTF-8';
+    OWNER = postgres;
 
 -- Conexión de la Base de datos.
 \connect db_tingeso;
@@ -23,4 +19,3 @@ CREATE TABLE Producto(
  precioProducto integer NOT NULL, 
  CONSTRAINT id PRIMARY KEY (id)
 );
-
