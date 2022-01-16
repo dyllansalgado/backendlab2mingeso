@@ -12,7 +12,7 @@ pipeline {
         }
  
         /// SonarQube Listo.
-        stage('SonarQube Gradle') {
+        /* stage('SonarQube Gradle') {
             steps {
                 dir("/var/lib/jenkins/workspace/backend/backend") {
                     withSonarQubeEnv('trabajo2-back') {
@@ -40,7 +40,7 @@ pipeline {
 					junit '*.xml'
 				}
 			}
-		}
+		} */
 
         //Docker
 
@@ -55,16 +55,17 @@ pipeline {
         stage('Contruir imagen docker'){
             steps{
         		dir("/var/lib/jenkins/workspace/backend/backend"){
-                 	sh 'docker build . -t backend'	
+                 	sh 'docker build . -t backend'
+                    sh 'docker-compose up -d'	
 	         	}
             }             
         }
 	stage('Correr imagen'){
                 steps{
-        		dir("/var/lib/jenkins/workspace/backend/backend"){
-				sh 'docker run --rm --name backend -d -p 8000:8000 backend'
+        		    dir("/var/lib/jenkins/workspace/backend/backend"){
+				        sh 'docker run --rm --name backend -d -p 8000:8000 backend'
 	         	}
-                }             
+            }             
         }
 	stage('Login') {
 
