@@ -57,13 +57,14 @@ pipeline {
 
         stage('Contruir imagen docker'){
             steps{
-                dir("/var/lib/jenkins/workspace/backend/basededatos"){
-                    sh 'docker build . -t postgrest2'
-                }
         		dir("/var/lib/jenkins/workspace/backend/backend"){
                  	sh 'docker build . -t backend'
-                    sh 'docker-compose up -d'	
+                    	
 	         	}
+                dir("/var/lib/jenkins/workspace/backend/basededatos"){
+                    sh 'docker build . -t postgrest2'
+                    sh 'docker-compose up -d'
+                }
             }             
         }
 	/* stage('Correr imagen'){
