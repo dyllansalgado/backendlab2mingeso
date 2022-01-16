@@ -15,7 +15,7 @@ services:
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
           
   db:
-    image: 'postgrest2'
+    image: 'postgrest2:latest'
     container_name: postgrest2WithBack
     environment:
       - POSTGRES_USER=postgres
