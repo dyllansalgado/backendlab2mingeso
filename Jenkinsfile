@@ -44,13 +44,24 @@ pipeline {
 
         //Docker
 
-        stage('Parar la imagen anterior'){
+        /* stage('Parar la imagen anterior'){
             steps{
                 dir("/var/lib/jenkins/workspace/backend/backend"){
 				    sh 'docker stop backend || true && docker rm backend || true'	
 			    }
                 dir("/var/lib/jenkins/workspace/backend/basededatos"){
                     sh 'docker stop postgrest2 || true && docker rm postgrest2 || true'
+                }
+            }             
+        } */
+
+        stage('Parar la imagen anterior'){
+            steps{
+                dir("/var/lib/jenkins/workspace/backend/backend"){
+				    sh 'docker stop postgrestprueba || true && docker rm postgrestprueba || true'	
+			    }
+                dir("/var/lib/jenkins/workspace/backend/basededatos"){
+                    sh 'docker stop backendprueba || true && docker rm backendprueba || true'
                 }
             }             
         }
