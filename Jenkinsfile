@@ -12,7 +12,7 @@ pipeline {
         }
  
         /// SonarQube Listo.
-        /* stage('SonarQube Gradle') {
+        stage('SonarQube Gradle') {
             steps {
                 dir("/var/lib/jenkins/workspace/backend/backend") {
                     withSonarQubeEnv('trabajo2-back') {
@@ -40,20 +40,9 @@ pipeline {
 					junit '*.xml'
 				}
 			}
-		} */
+		}
 
         //Docker
-
-        /* stage('Parar la imagen anterior'){
-            steps{
-                dir("/var/lib/jenkins/workspace/backend/backend"){
-				    sh 'docker stop backend || true && docker rm backend || true'	
-			    }
-                dir("/var/lib/jenkins/workspace/backend/basededatos"){
-                    sh 'docker stop postgrest2 || true && docker rm postgrest2 || true'
-                }
-            }             
-        } */
 
         stage('Parar la imagen anterior'){
             steps{
@@ -74,31 +63,27 @@ pipeline {
 	         	}
                 dir("/var/lib/jenkins/workspace/backend/basededatos"){
                     sh 'docker build . -t postgrest2'
+                    
+                    // Correr los contenedores en segundo plano.
                     sh 'docker-compose up -d'
                 }
             }             
         }
-	/* stage('Correr imagen'){
-                steps{
-        		    dir("/var/lib/jenkins/workspace/backend/backend"){
-                        sh 'docker run --rm --name postgrestprueba -d -p 5555:5432 postgrestprueba'
-				        sh 'docker run --rm --name backendprueba -d -p 8000:8000 backendprueba'
-	         	}
-            }             
-        } */
-	/* stage('Login') {
+        stage('Login') {
 
-            steps {
-                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                steps {
+                    sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                }
             }
-        }
-	stage('Subir imagen docker a hub'){
-                steps{
-			        sh 'docker tag backend miige/backend:latest'	
-			        sh 'docker push miige/backend:latest'
-                }             
-        } */
-        
+
+        // Preguntar si se sube las imagenes que se usan en el docker-compose
+        // o, se suben los contenedores que se crearon a partir del docker-compose.    
+        stage('Subir imagen docker a hub'){
+                    steps{
+                        sh 'docker tag backend miige/backend:latest'	
+                        sh 'docker push miige/backend:latest'
+                    }             
+            }
     }
 
 }
