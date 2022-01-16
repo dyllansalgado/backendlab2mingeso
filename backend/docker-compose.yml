@@ -16,7 +16,7 @@ services:
           
   db:
     image: 'postgrest2'
-    container_name: postgrest2
+    container_name: postgrest2WithBack
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
