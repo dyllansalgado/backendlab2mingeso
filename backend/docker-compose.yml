@@ -4,6 +4,8 @@ services:
   app:
     image: 'backend'
     build: .
+    ports:
+      - 8000:8000
     container_name: backendprueba
     depends_on:
       - db
@@ -15,6 +17,8 @@ services:
   db:
     image: 'postgrest2'
     container_name: postgrestprueba
+    ports:
+      - 5555:5432
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
