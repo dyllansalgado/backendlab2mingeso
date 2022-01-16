@@ -6,8 +6,6 @@ services:
     build:
       context: .
     container_name: backendWithDB
-    ports:
-      8000:8000
     depends_on:
       - db
     environment:
@@ -19,8 +17,6 @@ services:
   db:
     image: 'postgrest2:latest'
     container_name: postgrest2WithBack
-    ports:
-      5432:5432
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
