@@ -5,7 +5,7 @@ services:
     image: 'backend:latest'
     build:
       context: .
-    container_name: backend
+    container_name: backendWithDB
     depends_on:
       - db
     environment:
