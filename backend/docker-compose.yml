@@ -4,7 +4,7 @@ services:
   app:
     image: 'backend:latest'
     build: .
-    container_name: backendWithDB
+    container_name: backendprueba
     depends_on:
       - db
     environment:
@@ -14,7 +14,7 @@ services:
           
   db:
     image: 'postgrest2'
-    container_name: postgrest2WithBack
+    container_name: postgrestprueba
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres

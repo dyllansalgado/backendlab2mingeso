@@ -69,12 +69,12 @@ pipeline {
 	stage('Correr imagen'){
                 steps{
         		    dir("/var/lib/jenkins/workspace/backend/backend"){
-                        sh 'docker run --rm --name postgrest2WithBack -d -p 5555:5432 postgrest2WithBack'
-				        sh 'docker run --rm --name backendWithDB -d -p 8000:8000 backendWithDB'
+                        sh 'docker run --rm --name postgrestprueba -d -p 5555:5432 postgrestprueba'
+				        sh 'docker run --rm --name backendprueba -d -p 8000:8000 backendprueba'
 	         	}
             }             
         }
-	stage('Login') {
+	/* stage('Login') {
 
             steps {
                 sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
@@ -85,7 +85,7 @@ pipeline {
 			        sh 'docker tag backend miige/backend:latest'	
 			        sh 'docker push miige/backend:latest'
                 }             
-        }
+        } */
         
     }
 
