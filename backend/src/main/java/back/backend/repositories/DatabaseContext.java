@@ -1,4 +1,4 @@
-/* package back.backend.repositories;
+package back.backend.repositories;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -20,4 +20,4 @@ public class DatabaseContext {
     public Sql2o sql2o(){
         return new Sql2o(dbUrl, dbUser, dbPass);
     }
-} */
+}
