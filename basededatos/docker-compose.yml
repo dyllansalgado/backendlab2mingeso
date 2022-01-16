@@ -23,6 +23,6 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=db_tingeso
-  volumes:
+    volumes:
       - ./createDB.sql:/docker-entrypoint-initdb.d/createDB.sql
   
