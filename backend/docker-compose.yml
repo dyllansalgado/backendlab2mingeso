@@ -18,7 +18,7 @@ services:
     image: 'postgrest2'
     container_name: postgrestprueba
     ports:
-      - 5555:5432
+      - 5432:5432
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
