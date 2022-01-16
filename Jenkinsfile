@@ -49,11 +49,17 @@ pipeline {
                 dir("/var/lib/jenkins/workspace/backend/backend"){
 				    sh 'docker stop backend || true && docker rm backend || true'	
 			    }
+                dir("/var/lib/jenkins/workspace/backend/basededatos"){
+                    sh 'docker stop postgres:12.9 || true && docker rm postgres:12.9 || true'
+                }
             }             
         }
 
         stage('Contruir imagen docker'){
             steps{
+                dir("/var/lib/jenkins/workspace/backend/basededatos"){
+                    sh 'docker build . -t postgres:12.9'
+                }
         		dir("/var/lib/jenkins/workspace/backend/backend"){
                  	sh 'docker build . -t backend'
                     sh 'docker-compose up -d'	
@@ -63,6 +69,7 @@ pipeline {
 	stage('Correr imagen'){
                 steps{
         		    dir("/var/lib/jenkins/workspace/backend/backend"){
+                        sh 'docker run --rm --name postgres:12.9 -d -p 5432:5432 postgres:12.9'
 				        sh 'docker run --rm --name backend -d -p 8000:8000 backend'
 	         	}
             }             
