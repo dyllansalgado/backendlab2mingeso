@@ -76,12 +76,14 @@ pipeline {
                 }
             }
 
-        // Preguntar si se sube las imagenes que se usan en el docker-compose
-        // o, se suben los contenedores que se crearon a partir del docker-compose.    
+        // Subida de las images a Docker Hub.    
         stage('Subir imagen docker a hub'){
                     steps{
-                        sh 'docker tag backend miige/backend:latest'	
+                        sh 'docker tag backend miige/backend:latest'
+                        sh 'docker tag postgrest2 miige/postgrest2:latest'
+
                         sh 'docker push miige/backend:latest'
+                        sh 'docker push miige/postgrest2:latest'
                     }             
             }
     }
