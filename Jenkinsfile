@@ -17,7 +17,10 @@ pipeline {
                 dir("/var/lib/jenkins/workspace/backend/backend") {
                     withSonarQubeEnv('trabajo2-back') {
 						sh 'chmod +x ./gradlew'
-						sh './gradlew sonarqube'
+						sh './gradlew sonarqube \
+						  -Dsonar.projectKey=back \
+						  -Dsonar.host.url=http://161.35.187.91:9000 \
+						  -Dsonar.login=fc401f95f80a6f9c22b1707bf25209d876c3b763'
     				}
 				}
 			}
