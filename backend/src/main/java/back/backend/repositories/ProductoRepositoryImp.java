@@ -27,7 +27,8 @@ public class ProductoRepositoryImp implements ProductoRepository{
         try(Connection conn = sql2o.open()){
             return conn.createQuery(sql).executeAndFetch(Producto.class);
         }
-    }
+    } 
+    // Martes 18 de Enero
     @Override
     public Producto addProducto(Producto producto) {
         try(Connection conn = sql2o.open()){
