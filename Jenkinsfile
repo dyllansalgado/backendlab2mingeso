@@ -11,7 +11,7 @@ pipeline {
             } 
         }
  
-        /// SonarQube Listo.
+        //// SonarQube Listo.
         /*stage('SonarQube Gradle') {
             steps {
                 dir("/var/lib/jenkins/workspace/backend/backend") {
