@@ -1,7 +1,7 @@
 package back.backend.repositories;
 import back.backend.models.Producto;
 import java.util.List;
-//Repositorio de producto
+//Repositorio de productoo
 public interface ProductoRepository{
     public List<Producto> getAllProducto();
     public Producto addProducto(Producto producto);
