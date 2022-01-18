@@ -12,7 +12,7 @@ pipeline {
         }
  
         ///// SonarQube Listo.
-        stage('SonarQube Gradle') {
+        /*stage('SonarQube Gradle') {
             steps {
                 dir("/var/lib/jenkins/workspace/backend/backend") {
                     withSonarQubeEnv('trabajo2-back') {
@@ -24,7 +24,7 @@ pipeline {
     				}
 				}
 			}
-        }
+        }*/
 
         // JUnit Listo.
         stage('JUnit'){
