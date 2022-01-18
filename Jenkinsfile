@@ -27,7 +27,7 @@ pipeline {
         }*/
 
         // JUnit Listo.
-        stage('JUnit'){
+        /*stage('JUnit'){
 			steps {
 				dir("/var/lib/jenkins/workspace/backend/backend/build/test-results/test") {
 					sh 'touch prueba.xml'
@@ -43,7 +43,7 @@ pipeline {
 					junit '*.xml'
 				}
 			}
-		}
+		}*/
 
         //Docker
 
